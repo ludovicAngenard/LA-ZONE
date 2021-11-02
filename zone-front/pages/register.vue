@@ -29,7 +29,7 @@
         ></v-text-field>
         <v-text-field
             v-model="password"
-            :counter="10"
+            :counter="20"
             :rules="passwordRules"
             label="password"
             required
@@ -37,7 +37,7 @@
 
         <v-text-field
             v-model="confirmPassword"
-            :counter="10"
+            :counter="20"
             :rules="confirmPasswordRules"
             label="confirm password"
             required
@@ -58,11 +58,13 @@
             Validate
         </v-btn>
         </v-form>
-        <p>{{this.$store.state.users.users}}</p>
     </div>
 </template>
 
 <script>
+
+import firebase from 'firebase'
+
 export default {
     data: () => ({
         valid: true,
@@ -96,26 +98,9 @@ export default {
     }),
     methods: {
         validate () {
-            console.log(this.$refs.form.validate())
-            let user = {}
-            console.log('data : ', this.$store.state.users.users,  this.$store.state.users.users.includes(user))
-            if (this.$refs.form.validate()) {
-                user = {
-                    firstName: this.firstName,
-                    lastName: this.lastName,
-                    email: this.email,
-                    password: this.password
-                }
-                console.log(user)
-
-                if (!this.$store.state.users.users.includes(user)) {
-                    this.$store.dispatch("users/add_user", user);
-                    localStorage.setItem('users', JSON.stringify(this.$store.state.users.users));
-                    this.$store.dispatch("users/connect_user", user);
-                } else {
-                    user = {}
-                }
-                console.log('ça passe ?')
+            if (this.password === this.confirmPassword) {
+                firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+            } else {
             }
         }
     }

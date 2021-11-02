@@ -15,7 +15,7 @@
 
         <v-text-field
             v-model="password"
-            :counter="10"
+            :counter="20"
             :rules="passwordRules"
             label="password"
             required
@@ -34,6 +34,9 @@
     </div>
 </template>
 <script>
+
+import firebase from "firebase"
+
 export default {
     data: () => ({
         valid: true,
@@ -49,11 +52,8 @@ export default {
     }),
     methods: {
         validate(){
-            this.$store.state.users.users.forEach(user => {
-                if(user.email == this.email && user.password == password){
-                    this.$router.$store.dispatch('users/connect_user')
-                }
-            });
+
+            firebase.auth().signInWithEmailAndPassword(this.email, this.password)
 
         }
     }

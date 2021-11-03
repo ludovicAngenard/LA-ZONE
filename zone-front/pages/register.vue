@@ -1,23 +1,17 @@
 <template>
     <div>
-        <navbar></navbar>
+        <app-bar/>
+        <v-img max-height="25" class="mx-auto d-block pt-16" src="../assets/images/Z_logo.png" alt="the logo"></v-img>
         <v-form
         ref="form"
         v-model="valid"
         lazy-validation
         >
         <v-text-field
-            v-model="firstName"
+            v-model="name"
             :counter="10"
-            :rules="firstNameRules"
-            label="firstName"
-            required
-        ></v-text-field>
-        <v-text-field
-            v-model="lastName"
-            :counter="10"
-            :rules="lastNameRules"
-            label="lastName"
+            :rules="nameRules"
+            label="name"
             required
         ></v-text-field>
 
@@ -69,13 +63,8 @@ import firebase from 'firebase'
 export default {
     data: () => ({
         valid: true,
-        firstName: '',
-        firstNameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 20) || 'Name must be less than 20 characters',
-        ],
-        lastName: '',
-        lastNameRules: [
+        name: '',
+        nameRules: [
         v => !!v || 'Name is required',
         v => (v && v.length <= 20) || 'Name must be less than 20 characters',
         ],

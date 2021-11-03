@@ -31,9 +31,6 @@
         </v-btn>
 
         </v-form>
-        <!-- <v-if="authenticatedUser">
-        <p>You are logged in as {{ authenticatedUser.email }}.</p>
-        <button @click.prevent="logout">Logout</button> -->
     </div>
 </template>
 <script>
@@ -71,7 +68,7 @@ export default {
         validate(){
 
             firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-            this.$router.push('/inspire')
+            this.$router.push('/index')
 
         },
 

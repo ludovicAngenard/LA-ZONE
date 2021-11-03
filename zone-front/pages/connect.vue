@@ -31,11 +31,21 @@
         </v-btn>
 
         </v-form>
+        <!-- <v-if="authenticatedUser">
+        <p>You are logged in as {{ authenticatedUser.email }}.</p>
+        <button @click.prevent="logout">Logout</button> -->
     </div>
 </template>
 <script>
 
 import firebase from "firebase"
+
+import Cookies from 'universal-cookie';
+ 
+const cookies = new Cookies();
+ 
+cookies.set('email', 'a@a.fr', { path: '/' });
+console.log(cookies.get('email'));
 
 export default {
     data: () => ({
@@ -50,11 +60,23 @@ export default {
         v => !!v || 'password is required',
         ],
     }),
+
+    asyncData() {
+        return {
+            email: '',
+            password: ''
+        }
+    },
     methods: {
         validate(){
 
             firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+            this.$router.push('/inspire')
 
+        },
+
+        logout() {
+            firebase.auth().signOut()
         }
     }
 }

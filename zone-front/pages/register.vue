@@ -47,6 +47,7 @@
             :rules="[v => !!v || 'You must agree to continue!']"
             label="Acceptez-vous que ces données soient sauvegardées en bdd ?"
             required
+            
         ></v-checkbox>
 
         <v-btn

@@ -1,8 +1,3 @@
-export const ACTIONS = {
-    ADD_USER_METHOD: 'users/add_user',
-  }
-
-
 export const state = () => ({
     user:{},
   })
@@ -19,7 +14,6 @@ export const actions = {
             const {uid, email} = authUser;
             commit('ADD_USER',{uid, email});
         }
-        
+
     }
 }
- 

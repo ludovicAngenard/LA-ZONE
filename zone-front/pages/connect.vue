@@ -52,13 +52,6 @@
 
 import firebase from "firebase"
 
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
-
-cookies.set('email', 'a@a.fr', { path: '/' });
-console.log(cookies.get('email'));
-
 export default {
     data: () => ({
         valid: true,

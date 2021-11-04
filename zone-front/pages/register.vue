@@ -15,7 +15,7 @@
         >
         <v-text-field
         v-model="name"
-        :counter="10"
+        :counter="20"
         :rules="nameRules"
         label="name"
         required
@@ -77,7 +77,7 @@ import "firebase/firestore";
 export default {
   data: () => ({
     valid: true,
-    name: "test",
+    name: "",
     nameRules: [
       (v) => !!v || "Name is required",
       (v) => (v && v.length <= 20) || "Name must be less than 20 characters",
@@ -87,13 +87,13 @@ export default {
       (v) => !!v || "E-mail is required",
       (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
-    password: "password",
+    password: "",
     passwordRules: [
       (v) => !!v || "password is required",
       (v) => (v.length >= 5 && v.length <= 20) || "password must be valid",
     ],
 
-    confirmPassword: "password",
+    confirmPassword: "",
     confirmPasswordRules: [
       (v) => !!v || "password is required",
       (v) => (v.length >= 5 && v.length <= 20) || "password must be valid",
@@ -120,7 +120,6 @@ export default {
         try {
           await ref.set(document);
         } catch (e) {
-          console.log("ca a pas marché");
           console.error(e);
         }
       }

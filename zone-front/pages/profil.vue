@@ -1,0 +1,10 @@
+<template>
+    <div>
+        <v-text-field
+            v-model="name"
+            :rules="nameRules"
+            label=""
+            required
+        ></v-text-field>
+    </div>
+</template>

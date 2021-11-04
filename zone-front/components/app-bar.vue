@@ -1,5 +1,5 @@
 <template>
-    <v-card class="d-flex justify-space-around align-center">
+    <v-card class="d-flex justify-space-around align-center grey darken-3">
         <a href="/" class="d-flex justify-space-around align-center">
             <span class="align-self-end px-3"  style="color: #FFFFFF; text-shadow: 3px 1px 3px rgba(255, 0, 0, 0.77);line-height: 13px;">LA</span>
             <span class="d-flex align-end">

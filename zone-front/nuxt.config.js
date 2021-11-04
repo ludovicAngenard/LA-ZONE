@@ -55,7 +55,7 @@ export default {
         persistence: 'local', // default
         initialize: {
           // onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION',
-          onAuthStateChangedAction: 'onAuthStateChangedAction',
+          onAuthStateChangedAction: 'users/onAuthStateChangedAction',
           // subscribeManually: false,
         },
         ssr: false, // default
@@ -64,7 +64,7 @@ export default {
       },
       firestore: {
         memoryOnly: false, // default
-        enablePersistence: true,
+        enablePersistence: false,
         emulatorPort: 8080,
         emulatorHost: 'localhost',
       }, // Just as example. Can be any other service.

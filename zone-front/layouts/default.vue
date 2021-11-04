@@ -1,10 +1,7 @@
 <template>
   <v-app>
-      <app-bar />
-      <v-main>
-        <v-container>
-          <Nuxt />
-        </v-container>
-      </v-main>
-  </v-app>  
+    <app-bar></app-bar>
+        <Nuxt  />
+    <theFooter></theFooter>
+  </v-app>
 </template>

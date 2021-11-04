@@ -1,35 +1,50 @@
 <template>
     <div>
-        <navbar></navbar>
-          <v-form
+        <img
+        width="300px"
+        class="mx-auto d-block pt-16"
+        src="../assets/images/Z_logo.png"
+        alt="the logo"
+        />
+        <v-form
         ref="form"
         v-model="valid"
         lazy-validation
+        style="width:30%"
+        class="mx-auto py-16"
         >
-        <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
-            required
-        ></v-text-field>
 
         <v-text-field
-            v-model="password"
-            :counter="20"
-            :rules="passwordRules"
-            label="password"
-            required
+        v-model="email"
+        :rules="emailRules"
+        label="E-mail"
+        required
+        ></v-text-field>
+        <v-text-field
+        v-model="password"
+        :counter="20"
+        :rules="passwordRules"
+        label="password"
+        required
         ></v-text-field>
 
-        <v-btn
+        <div class="mx-auto text-center">
+            <v-chip
+            pill
+            x-large
             :disabled="!valid"
-            color="success"
-            class="mr-4"
+            color="#DB2727"
+            class="text-center px-12"
             @click="validate"
-        >
-            Validate
-        </v-btn>
-
+            >
+                Se connecter
+            </v-chip>
+        </div>
+        <div class="text-center pt-6">
+            <a href="/register" class="white--text">
+                Je n'ai pas encore de compte, je souhaite m'inscrire.
+            </a>
+        </div>
         </v-form>
     </div>
 </template>
@@ -38,9 +53,9 @@
 import firebase from "firebase"
 
 import Cookies from 'universal-cookie';
- 
+
 const cookies = new Cookies();
- 
+
 cookies.set('email', 'a@a.fr', { path: '/' });
 console.log(cookies.get('email'));
 

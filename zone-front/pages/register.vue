@@ -1,57 +1,71 @@
 <template>
     <div>
-        <app-bar/>
-        <v-img max-height="25" class="mx-auto d-block pt-16" src="../assets/images/Z_logo.png" alt="the logo"></v-img>
+        <img
+        width="300px"
+        class="mx-auto d-block pt-16"
+        src="../assets/images/Z_logo.png"
+        alt="the logo"
+        />
         <v-form
         ref="form"
         v-model="valid"
         lazy-validation
+        style="width:30%"
+        class="mx-auto py-16"
         >
         <v-text-field
-            v-model="name"
-            :counter="10"
-            :rules="nameRules"
-            label="name"
-            required
+        v-model="name"
+        :counter="10"
+        :rules="nameRules"
+        label="name"
+        required
         ></v-text-field>
 
         <v-text-field
-            v-model="email"
-            :rules="emailRules"
-            label="E-mail"
-            required
+        v-model="email"
+        :rules="emailRules"
+        label="E-mail"
+        required
         ></v-text-field>
         <v-text-field
-            v-model="password"
-            :counter="20"
-            :rules="passwordRules"
-            label="password"
-            required
+        v-model="password"
+        :counter="20"
+        :rules="passwordRules"
+        label="password"
+        required
         ></v-text-field>
 
         <v-text-field
-            v-model="confirmPassword"
-            :counter="20"
-            :rules="confirmPasswordRules"
-            label="confirm password"
-            required
+        v-model="confirmPassword"
+        :counter="20"
+        :rules="confirmPasswordRules"
+        label="confirm password"
+        required
         ></v-text-field>
         <v-checkbox
-            v-model="checkbox"
-            :rules="[v => !!v || 'You must agree to continue!']"
-            label="Acceptez-vous que ces données soient sauvegardées en bdd ?"
-            required
-            
-        ></v-checkbox>
+        v-model="checkbox"
+        :rules="[v => !!v || 'You must agree to continue!']"
+        label="Acceptez-vous que ces données soient sauvegardées en bdd ?"
+        required
 
-        <v-btn
+        ></v-checkbox>
+        <div class="mx-auto text-center">
+            <v-chip
+            pill
+            x-large
             :disabled="!valid"
-            color="success"
-            class="mr-4"
+            color="#DB2727"
+            class="text-center px-12"
             @click="validate"
-        >
-            Validate
-        </v-btn>
+            >
+                S'inscrire
+            </v-chip>
+        </div>
+        <div class="text-center pt-6">
+            <a href="/connect" class="white--text">
+                J'ai déjà une compte, je souhaite me connecter.
+            </a>
+        </div>
         </v-form>
     </div>
 </template>

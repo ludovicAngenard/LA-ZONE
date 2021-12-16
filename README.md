@@ -25,3 +25,13 @@ products :
     [2] (string) > Le champs correspond a l'url d'hébergement de l'image.
   -name (string)
   -price (number)
+  
+  
+ endpoint possible :
+ /register
+ /connect
+ /product-list
+ /product/{productId}
+ /panier
+ /profile
+ /whish-list

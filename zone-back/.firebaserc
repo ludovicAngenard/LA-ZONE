@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "zone-back-bb35d"
+    "default": "zone-back-bb35d",
+    "local": "nuxtjs-b301f"
   }
 }

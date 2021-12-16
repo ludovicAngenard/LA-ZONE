@@ -57,7 +57,26 @@ export const state = () => ({
     ],
     filteredProducts: [],
     cartProducts: [],
-    whishList: [],
+    whishList: [
+      {
+        id: 5,
+        brand : 'nike',
+        name: 'product B',
+        price: 10,
+        description:'Magnifique  que vous devez  avoir pour  !',
+        category:"voiture",
+        image:"https://tse3.mm.bing.net/th?id=OIP.WBRxHkGradGYkGmEVdaoXwHaEK&pid=Api",
+      },
+      {
+        id: 6,
+        brand: 'carglass',
+        name: 'product C',
+        price: 1000,
+        description:' objet que vous  absolument avoir  demain !',
+        category:"extérieur",
+        image:"https://tse3.mm.bing.net/th?id=OIP.WBRxHkGradGYkGmEVdaoXwHaEK&pid=Api",
+      }
+    ],
 
 })
 

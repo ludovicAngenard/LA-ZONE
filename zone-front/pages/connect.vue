@@ -48,8 +48,6 @@
   </div>
 </template>
 <script>
-import firebase from "firebase";
-
 export default {
   data: () => ({
     valid: true,
@@ -80,6 +78,7 @@ export default {
           this.email,
           this.password
         );
+        this.$router.push("/product-list");
       } catch (e) {
         alert(e);
       }

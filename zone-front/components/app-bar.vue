@@ -1,7 +1,7 @@
 <template>
   <v-card class="d-flex justify-space-around align-center grey darken-3 py-6">
     <a
-      href="/"
+      href="/product-list"
       class="d-flex justify-space-around align-center text-decoration-none"
     >
       <span
@@ -39,6 +39,9 @@
         <v-tab @click="goToAccount" class="white--text grey darken-3"
           >Mon compte</v-tab
         >
+        <v-icon class="grey darken-3" @click="disconnect"
+          >mdi-door-open
+        </v-icon>
       </v-tabs>
     </div>
   </v-card>
@@ -54,6 +57,10 @@ export default {
     },
     goToWishList() {
       this.$router.push("/wish-list");
+    },
+    disconnect: async function () {
+      this.$fire.auth.signOut();
+      this.$router.push("/connect");
     },
   },
 };

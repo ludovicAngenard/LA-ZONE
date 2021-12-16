@@ -52,6 +52,7 @@ export default {
 
       try {
         await refCommand.update(newCommand);
+        this.$forceUpdate();
       } catch (e) {
         console.error(e);
       }
@@ -71,7 +72,11 @@ export default {
         .doc(this.id);
 
       try {
-        await refCommand.update(newCommand);
+        if (this.$fire.firestore.collection("cart").doc(this.id).quantity > 1) {
+          await refCommand.update(newCommand);
+        } else {
+          await this.$store.dispatch(newCommand);
+        }
       } catch (e) {
         console.error(e);
       }

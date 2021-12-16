@@ -70,6 +70,7 @@ export default {
         quantity: 1,
         userId: this.$fire.auth.currentUser.uid,
       });
+      this.$router.push("/panier");
     },
   },
 };

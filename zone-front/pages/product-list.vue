@@ -17,7 +17,6 @@
             </div>
         </div>
     </div>
-    {{this.$store.state.products.whishList}}
     <div
         v-if="this.$store.state.categories.filteredCategories.length != 0"
     >
@@ -41,8 +40,6 @@
             <v-col
                 v-for="product in findSaleList()"
                 :key="product.id"
-                :data-product="product"
-                ref="itemProduct"
                 sm="4"
             >
                 <v-card
@@ -75,7 +72,7 @@
                 </v-card>
             </v-col>
         </v-row>
-        <cart width="30%"></cart>
+        <cart></cart>
     </div>
     <categories-slider ></categories-slider>
 </div>
@@ -116,10 +113,8 @@ export default {
         },
         findSaleList(){
             if (this.$store.state.categories.filteredCategories.length != 0){
-                console.log('en effet : ', this.$store.state.products.filteredProducts)
                 return this.$store.state.products.filteredProducts
             } else {
-                console.log('???? : ', this.$store.state.products.products)
                 return this.$store.state.products.products
             }
 

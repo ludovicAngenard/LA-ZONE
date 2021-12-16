@@ -28,7 +28,7 @@ export default {
             this.$router.push('/basket')
         },
         goToWishList () {
-            this.$router.push('/wishList')
+            this.$router.push('/wish-list')
         }
     }
 }

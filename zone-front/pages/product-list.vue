@@ -125,7 +125,7 @@ export default {
             this.$store.dispatch('products/remove_products_from_filtered_products', filteredProducts)
         },
         isInWishList(product){
-            this.$store.state.products.whishList.forEach(whish => {
+            this.$store.state.products.wishList.forEach(whish => {
                 if (whish == product){
                     return heart_fill
                 }

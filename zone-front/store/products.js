@@ -57,7 +57,7 @@ export const state = () => ({
     ],
     filteredProducts: [],
     cartProducts: [],
-    whishList: [
+    wishList: [
       {
         id: 5,
         brand : 'nike',
@@ -98,12 +98,12 @@ export const mutations = {
     }
   },
   add_to_wish_list: (state, product) => {
-    state.whishList.push(product)
+    state.wishList.push(product)
   },
   sub_from_wish_list: (state, product) => {
-    const index = state.whishList.indexOf(product);
+    const index = state.wishList.indexOf(product);
     if (index > -1) {
-      state.whishList.splice(index, 1);
+      state.wishList.splice(index, 1);
     }
   },
   filter_product_list: (state, products) => {

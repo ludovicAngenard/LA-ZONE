@@ -10,7 +10,7 @@
                 sm="12"
             >
                 <div
-                    v-for="whish in this.$store.state.products.whishList"
+                    v-for="whish in this.$store.state.products.wishList"
                     :key="whish.id"
                     class="mx-auto mb-8 drag-el mx-2 d-flex justify-center"
                     draggable

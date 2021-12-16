@@ -28,7 +28,6 @@ export default {
   },
   async created() {
     //get prduct by id
-    console.log("icfffi", this.$fire.auth.currentUser);
     const productRef = await this.$fire.firestore
       .collection("cart")
       .where("userId", "==", this.$fire.auth.currentUser.uid);
@@ -45,9 +44,7 @@ export default {
   },
   methods: {
     finish: async function () {
-      console.log("ici", this.$fire.auth.currentUser);
       const current = this.$fire.auth.currentUser.uid;
-      console.log("ici", this.$fire.auth.currentUser);
       const promises = this.commands.map(async (command) => {
         // add in oldorder
         const ref = await this.$fire.firestore

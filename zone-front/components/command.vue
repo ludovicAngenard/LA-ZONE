@@ -17,7 +17,7 @@
           <div class="d-flex">
             <div class="plus" @click="add">+</div>
             <div class="mr-3 ml-3">{{ quantity }}</div>
-            <div class="minus">-</div>
+            <div class="minus" @click="minus">-</div>
           </div>
         </div>
       </div>
@@ -44,6 +44,26 @@ export default {
         price: this.price,
         description: this.desc,
         quantity: this.quantity + 1,
+      };
+
+      const refCommand = await this.$fire.firestore
+        .collection("cart")
+        .doc(this.id);
+
+      try {
+        await refCommand.update(newCommand);
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    minus: async function () {
+      const newCommand = {
+        brand: this.brand,
+        name: this.title,
+        images: this.img,
+        price: this.price,
+        description: this.desc,
+        quantity: this.quantity - 1,
       };
 
       const refCommand = await this.$fire.firestore

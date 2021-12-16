@@ -2,6 +2,6 @@
   <v-app>
     <app-bar></app-bar>
         <Nuxt  />
-    <theFooter></theFooter>
+    <the-footer></the-footer>
   </v-app>
 </template>

@@ -23,7 +23,7 @@
             </v-row>
             <v-row
                 v-for="product in this.$store.state.products.cartProducts"
-                :key="product.id"
+                :key="product.name"
             >
             <v-col>
                 {{product.name}}
@@ -113,11 +113,15 @@ export default {
     methods: {
   		onDrop(evt) {
   			const productID = evt.dataTransfer.getData('productID')
-  			const product =  this.$store.state.products.products.find(product => product.id == productID)
+
+            console.log(' evt',evt.dataTransfer)
+  			const product =  this.$store.state.products.products.find(product => product.name == productID)
+              console.log('bah alors : ',product)
             this.$store.state.products.cartProducts.forEach(element => {
-                if (element.id == product.id){
+                if (element.name == product.name){
                     this.findQuantity(product)
                     this.findPrice(product)
+                    console.log('oui : ', product)
                     this.$store.dispatch('products/readd_to_cart', product)
 
                     this.isExisted = true
@@ -157,14 +161,16 @@ export default {
             return this.totalPrice
         },
         plus(product){
-            product.quantity ++
+            this.$store.dispatch('products/readd_to_cart', product)
             this.findTotal()
             this.$forceUpdate();
         },
         sub(product){
-            product.quantity --
+            this.$store.dispatch('products/sub_from_cart', product)
+            console.log(product.quantity)
             if(product.quantity == 0){
-                this.$store.dispatch('products/sub_from_cart', product)
+                console.log('??????')
+                this.$store.dispatch('products/remove_from_cart', product)
             }
             this.findTotal()
             this.$forceUpdate();

@@ -54,14 +54,19 @@
     </div>
     <div class="d-flex">
       <v-row no-gutters style="width: 70%" class="mt-16">
-        <v-col v-for="product in findSaleList()" :key="product.id" sm="4">
+        <v-col v-for="product in findSaleList()" :key="product.name" sm="4">
           <v-card
             class="mx-auto mb-8 drag-el mx-2"
             width="70%"
             draggable
             @dragstart="startDrag($event, product)"
           >
-            <v-img :src="product.image" width="100%" class="mx-auto"></v-img>
+            <v-img
+              :src="product.images[0]"
+              width="100%"
+              height="200px"
+              class="mx-auto"
+            ></v-img>
             <img
               v-on:click="toggle_wish($event, product)"
               class="mt-2 ml-2"
@@ -80,7 +85,7 @@
           </v-card>
         </v-col>
       </v-row>
-      <cart> </cart>
+      <cart></cart>
     </div>
     <categories-slider></categories-slider>
   </div>
@@ -101,12 +106,51 @@ export default {
     nextPageDisable: false,
     categories: [],
   }),
+  async created() {
+    const productsRef = await this.$fire.firestore.collection("products");
 
+    const cartRef = await this.$fire.firestore
+      .collection("cart")
+      .where("userId", "==", this.$fire.auth.currentUser.uid);
+
+    const categoriesRef = await this.$fire.firestore.collection("categories");
+
+    try {
+      const productDoc = await productsRef.get();
+      productDoc.forEach((product) => {
+        this.$store.dispatch("products/add_to_products", product.data());
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
+    try {
+      const cartDoc = await cartRef.get();
+      cartDoc.forEach((product) => {
+        this.$store.dispatch("products/add_to_cart", product.data());
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
+    try {
+      const categoriesDoc = await categoriesRef.get();
+      categoriesDoc.forEach((category) => {
+        this.$store.dispatch("categories/add_category", {
+          ...category.data(),
+          id: category.id,
+        });
+      });
+      console.log(this.$store.state.categories.categories);
+    } catch (e) {
+      console.log(e);
+    }
+  },
   methods: {
     startDrag(evt, product) {
       evt.dataTransfer.dropEffect = "move";
       evt.dataTransfer.effectAllowed = "move";
-      evt.dataTransfer.setData("productID", product.id);
+      evt.dataTransfer.setData("productID", product.name);
     },
 
     toggle_wish(evt, product) {
@@ -116,6 +160,20 @@ export default {
       ) {
         this.$store.dispatch("products/add_to_wish_list", product);
         evt.target.src = heart_fill;
+        // const wish = {
+        //     userId: this.$fire.auth.currentUser.uid,
+        //     brand: product.brand,
+
+        // }
+        // const whishRef = await this.$fire.firestore
+        //     .collection("wishes")
+        //     .where("userId", "==", this.$fire.auth.currentUser.uid);
+
+        // try {
+        //     await whishRef.update(wish);
+        // } catch (e) {
+        //     console.error(e);
+        // }
       } else {
         this.$store.dispatch("products/sub_from_wish_list", product);
         evt.target.src = heart_empty;
@@ -130,7 +188,7 @@ export default {
     },
     removeFilter(filter) {
       var filteredProducts = this.$store.state.products.products.filter(
-        (product) => product.category == filter.name
+        (product) => product.category == filter.id
       );
       this.$store.dispatch("categories/remove_filter", filter);
       this.$store.dispatch(

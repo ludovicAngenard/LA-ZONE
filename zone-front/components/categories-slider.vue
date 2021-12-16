@@ -18,10 +18,11 @@
                     mdi-arrow-left-bold
                 </v-icon>
             </v-btn>
+
             <v-row>
                 <v-col
-                    v-for="category in this.categories"
-                    :key="category.id"
+                    v-for="category in this.$store.state.categories.categories"
+                    :key="category.name"
                 >
                     <v-card
 
@@ -30,6 +31,7 @@
                         <v-img
                                 :src="category.image"
                                 width="350px"
+                                height="200px"
                                 class="mx-auto"
                         ></v-img>
                         <v-card-text
@@ -62,7 +64,6 @@ export default {
         page: 0,
         previousPageDisable: true,
         nextPageDisable: false,
-        categories:[],
         isFiltered: false,
     }),
 
@@ -71,6 +72,7 @@ export default {
             return  this.$store.state.products.products
         }
     },
+
     methods: {
 
         findPaged(limit, offset){
@@ -116,7 +118,7 @@ export default {
                 }
             });
             if (!this.isFiltered){
-                var filteredProducts = this.$store.state.products.products.filter( product => product.category == category.name)
+                var filteredProducts = this.$store.state.products.products.filter( product => product.category == category.id)
                 this.$store.dispatch('categories/filter_category', category)
                 this.$store.dispatch('products/filter_product_list', filteredProducts)
             }

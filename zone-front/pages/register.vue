@@ -123,7 +123,7 @@ export default {
         } catch (e) {
           console.error(e);
         }
-        this.$router.push("/connect");
+        this.$router.push("/product-list");
       }
     }
   }

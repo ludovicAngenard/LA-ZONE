@@ -49,7 +49,6 @@
       </div>
     </div>
     <div class="d-flex"></div>
-    <categories-slider></categories-slider>
   </div>
 </template>
 

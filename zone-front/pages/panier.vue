@@ -36,7 +36,6 @@ export default {
       productDoc.forEach((element) => {
         this.commands.push({ data: element.data(), id: element.id });
       });
-      // this.commands = productDoc.data();
     } catch (e) {
       console.log(e);
       return;

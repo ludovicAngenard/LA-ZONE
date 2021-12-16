@@ -48,45 +48,42 @@
   </div>
 </template>
 <script>
-
-import firebase from "firebase"
+import firebase from "firebase";
 
 export default {
-    data: () => ({
-        valid: true,
-        email: '',
-        emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-        ],
-        password: '',
-        passwordRules: [
-        v => !!v || 'password is required',
-        ],
-    }),
+  data: () => ({
+    valid: true,
+    email: "",
+    emailRules: [
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
+    password: "",
+    passwordRules: [(v) => !!v || "password is required"],
+  }),
 
-    asyncData() {
-        return {
-            email: '',
-            password: ''
-        }
-    },
-    computed: {
+  asyncData() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  computed: {
     user: function () {
       return this.$store.state.users.user;
     },
   },
-    methods: {
-        validate: async function () {
-
-            try { 
-                console.log('UID : ',this.user.uid)
-                await this.$fire.auth.signInWithEmailAndPassword(this.email,this.password)
-                console.log('UID : ',this.user.uid)
-            } catch (e) { 
-            alert(e) 
-            }
-        },
-    }
-}
+  methods: {
+    validate: async function () {
+      try {
+        await this.$fire.auth.signInWithEmailAndPassword(
+          this.email,
+          this.password
+        );
+      } catch (e) {
+        alert(e);
+      }
+    },
+  },
+};
 </script>

@@ -1,5 +1,3 @@
-
-
 export const state = () => ({
     categories:[
         {id:1, name:"sport", image:"https://tse3.mm.bing.net/th?id=OIP.WBRxHkGradGYkGmEVdaoXwHaEK&pid=Api"},

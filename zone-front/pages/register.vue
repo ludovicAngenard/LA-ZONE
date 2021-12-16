@@ -10,7 +10,7 @@
       ref="form"
       v-model="valid"
       lazy-validation
-      style="width:30%"
+      style="width: 30%"
       class="mx-auto py-16"
     >
       <v-text-field
@@ -44,7 +44,7 @@
       ></v-text-field>
       <v-checkbox
         v-model="checkbox"
-        :rules="[v => !!v || 'You must agree to continue!']"
+        :rules="[(v) => !!v || 'You must agree to continue!']"
         label="Acceptez-vous que ces données soient sauvegardées en bdd ?"
         required
       ></v-checkbox>
@@ -77,46 +77,46 @@ export default {
     valid: true,
     name: "",
     nameRules: [
-      v => !!v || "Name is required",
-      v => (v && v.length <= 20) || "Name must be less than 20 characters"
+      (v) => !!v || "Name is required",
+      (v) => (v && v.length <= 20) || "Name must be less than 20 characters",
     ],
     email: "",
     emailRules: [
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
     password: "",
     passwordRules: [
-      v => !!v || "password is required",
-      v => (v.length >= 5 && v.length <= 20) || "password must be valid"
+      (v) => !!v || "password is required",
+      (v) => (v.length >= 5 && v.length <= 20) || "password must be valid",
     ],
 
     confirmPassword: "",
     confirmPasswordRules: [
-      v => !!v || "password is required",
-      v => (v.length >= 5 && v.length <= 20) || "password must be valid"
+      (v) => !!v || "password is required",
+      (v) => (v.length >= 5 && v.length <= 20) || "password must be valid",
     ],
-    checkbox: true
+    checkbox: true,
   }),
   computed: {
-    user: function() {
+    user: function () {
       return this.$store.state.users.user;
-    }
+    },
   },
   methods: {
-    validate: async function() {
-      console.log(this.user.uid);
+    validate: async function () {
       if (this.password === this.confirmPassword) {
-        const currentUser = await this.$fire.auth.createUserWithEmailAndPassword(
-          this.email,
-          this.password
-        );
+        const currentUser =
+          await this.$fire.auth.createUserWithEmailAndPassword(
+            this.email,
+            this.password
+          );
         const ref = await this.$fire.firestore
           .collection("users")
           .doc(currentUser.user.uid);
         const document = {
           name: this.name,
-          email: this.email
+          email: this.email,
         };
         try {
           await ref.set(document);
@@ -125,7 +125,7 @@ export default {
         }
         this.$router.push("/product-list");
       }
-    }
-  }
+    },
+  },
 };
 </script>

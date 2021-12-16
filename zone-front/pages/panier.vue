@@ -27,7 +27,6 @@ export default {
     };
   },
   async created() {
-    //get prduct by id
     const productRef = await this.$fire.firestore
       .collection("cart")
       .where("userId", "==", this.$fire.auth.currentUser.uid);
@@ -45,7 +44,6 @@ export default {
     finish: async function () {
       const current = this.$fire.auth.currentUser.uid;
       const promises = this.commands.map(async (command) => {
-        // add in oldorder
         const ref = await this.$fire.firestore
           .collection("oldorder")
           .doc(command.id);
@@ -64,7 +62,6 @@ export default {
           console.error(e);
         }
 
-        // delete in cart
         const refCart = await this.$fire.firestore
           .collection("cart")
           .doc(command.id);

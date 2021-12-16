@@ -141,7 +141,6 @@ export default {
           id: category.id,
         });
       });
-      console.log(this.$store.state.categories.categories);
     } catch (e) {
       console.log(e);
     }
@@ -160,20 +159,6 @@ export default {
       ) {
         this.$store.dispatch("products/add_to_wish_list", product);
         evt.target.src = heart_fill;
-        // const wish = {
-        //     userId: this.$fire.auth.currentUser.uid,
-        //     brand: product.brand,
-
-        // }
-        // const whishRef = await this.$fire.firestore
-        //     .collection("wishes")
-        //     .where("userId", "==", this.$fire.auth.currentUser.uid);
-
-        // try {
-        //     await whishRef.update(wish);
-        // } catch (e) {
-        //     console.error(e);
-        // }
       } else {
         this.$store.dispatch("products/sub_from_wish_list", product);
         evt.target.src = heart_empty;

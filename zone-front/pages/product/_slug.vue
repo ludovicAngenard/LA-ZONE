@@ -25,14 +25,12 @@ export default {
     const productId = params.slug;
     return { productId };
   },
-  data: function() {
+  data: function () {
     return {
-      command: null
+      command: null,
     };
   },
   async created() {
-    //get prduct by id
-
     const productRef = this.$fire.firestore
       .collection("products")
       .doc(this.productId);
@@ -43,6 +41,6 @@ export default {
       console.log(e);
       return;
     }
-  }
+  },
 };
 </script>
